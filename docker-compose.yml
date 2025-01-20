@@ -1,0 +1,38 @@
+services:
+  app:
+    build: .
+    container_name: backend-elysia
+    ports:
+      - "3001:3000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/explorer_db
+      - NODE_ENV=development
+      - TYPEORM_CONNECTION=postgres
+      - TYPEORM_HOST=db
+      - TYPEORM_USERNAME=postgres
+      - TYPEORM_PASSWORD=postgres
+      - TYPEORM_DATABASE=explorer_db
+      - TYPEORM_PORT=5432
+      - TYPEORM_SYNCHRONIZE=true
+      - TYPEORM_LOGGING=true
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - db
+    command: bun run dev
+
+  db:
+    image: postgres:15-alpine
+    container_name: backend-elysia-db
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=explorer_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

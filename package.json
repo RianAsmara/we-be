@@ -6,10 +6,20 @@
     "dev": "bun run --watch src/index.ts"
   },
   "dependencies": {
-    "elysia": "latest"
+    "@elysiajs/cors": "^0.8.0",
+    "@elysiajs/swagger": "^1.2.0",
+    "bcrypt": "^5.1.1",
+    "elysia": "latest",
+    "pg": "^8.11.3",
+    "reflect-metadata": "^0.2.1",
+    "typeorm": "^0.3.19",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "bun-types": "latest"
+    "bun-types": "latest",
+    "@types/bcrypt": "^5.0.2",
+    "@types/uuid": "^9.0.7",
+    "@types/node": "^20.11.5"
   },
   "module": "src/index.js"
 }
